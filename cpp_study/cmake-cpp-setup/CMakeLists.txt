@@ -71,3 +71,9 @@ include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/third)
 
 # 添加子目录
 add_subdirectory(src)
+
+#[[
+    启用测试
+]]
+enable_testing()
+add_subdirectory(test)

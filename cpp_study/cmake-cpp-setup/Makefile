@@ -1,7 +1,7 @@
 ALL:run
 
 
-.PHONY:configure build run rerun clean format tidy doc
+.PHONY:configure build run rerun test retest clean format tidy doc
 
 configure:
 ifeq ($(OS), Windows_NT)
@@ -17,10 +17,15 @@ else
 	cmake --build --preset=linux-release
 endif
 
-run:build
-	cd build/ninja-release/dist/bin && ./graver -l -i test.graver
+run: build
+	cd build/ninja-release/dist/bin && ./graver
 
 rerun:clean run
+
+test: build
+	cd build/ninja-release/dist/test && ./graver_test
+
+retest: clean test
 
 clean:
 	rm -rf build
