@@ -1,0 +1,4 @@
+.vs/
+
+win32-001-hello-world/build/
+win32-001-hello-world/*.user
