@@ -254,10 +254,10 @@
     // "todo-tree.filtering.excludeGlobs": [
     //     "**/third/**"
     // ],
-    // "todo-tree.filtering.includeGlobs": [
-    //     "**/include/**",
-    //     "**/src/**"
-    // ],
+    "todo-tree.filtering.includeGlobs": [
+        "**/include/**",
+        "**/src/**"
+    ],
     "todo-tree.filtering.ignoreGitSubmodules": true,
     "todohighlight.keywords": [],
     "todo-tree.tree.showCountsInTree": true,
