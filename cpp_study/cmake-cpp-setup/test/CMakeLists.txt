@@ -43,10 +43,7 @@ target_include_directories(
     ${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/third/test)
 
-# target_link_libraries(
-# ${PROJECT_NAME}
-# PRIVATE fmt::fmt spdlog::spdlog doctest::doctest ${lib_util_name}
-# ${lib_config_name} ${lib_compiler_name})
+target_link_libraries(${PROJECT_NAME} ${lib_person_name})
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY
     ${dist_dir}/test)
 
@@ -54,4 +51,13 @@ if(UNIX)
     # 设置 rpath
     set_target_properties(${PROJECT_NAME} PROPERTIES INSTALL_RPATH
         "\${ORIGIN}/../lib")
+endif()
+
+if(WIN32)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        POST_BUILD
+
+        # 复制 vcpkg 库
+        COMMAND cp -rf ${bin_dir}/*.dll ${dist_dir}/test/)
 endif()

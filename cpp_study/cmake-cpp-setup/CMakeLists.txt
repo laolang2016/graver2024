@@ -41,21 +41,12 @@ if(UNIX)
     set(lib_dir ${dist_dir}/lib)
 endif()
 
-# 配置类库
-set(lib_config_name config)
+# 一个示例类库
+set(lib_person_name person)
 
 if(WIN32)
-    set(lib_config_file_name
-        ${CMAKE_SHARED_LIBRARY_PREFIX}${lib_config_name}${CMAKE_DEBUG_POSTFIX}${CMAKE_SHARED_LIBRARY_SUFFIX}
-    )
-endif()
-
-# 工具类库
-set(lib_util_name util)
-
-if(WIN32)
-    set(lib_util_file_name
-        ${CMAKE_SHARED_LIBRARY_PREFIX}${lib_util_name}${CMAKE_DEBUG_POSTFIX}${CMAKE_SHARED_LIBRARY_SUFFIX}
+    set(lib_person_file_name
+        ${CMAKE_SHARED_LIBRARY_PREFIX}${lib_person_name}${CMAKE_DEBUG_POSTFIX}${CMAKE_SHARED_LIBRARY_SUFFIX}
     )
 endif()
 
