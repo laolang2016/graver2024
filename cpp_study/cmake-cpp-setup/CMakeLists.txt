@@ -57,8 +57,18 @@ endif()
 # 生成 compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# 添加库链接路径
+if(UNIX)
+    link_directories(${lib_dir})
+elseif(WIN32)
+    link_directories(${bin_dir})
+endif()
+
 # 包含全局头文件
-include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/third)
+include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/third/lib)
+
+# 复制 lua 脚本
+configure_file(${CMAKE_SOURCE_DIR}/resources/main.lua ${bin_dir}/)
 
 # 添加子目录
 add_subdirectory(src)

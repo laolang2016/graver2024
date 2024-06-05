@@ -1,0 +1,28 @@
+ALL: after_build
+
+.PHONY: configure build clean after_build
+
+configure:
+ifeq ($(OS), Windows_NT)
+	cmake --preset=windows-release
+else
+	cmake --preset=linux-release
+endif
+
+build: configure
+ifeq ($(OS), Windows_NT)
+	cmake --build --preset=windows-release
+else
+	cmake --build --preset=linux-release
+endif
+
+after_build: build
+	cp build/ninja-release/liblua.so ../../build/ninja-release/dist/lib/
+	cp build/ninja-release/liblua.so.* ../../build/ninja-release/dist/lib/
+	cp build/ninja-release/liblua.so ../../build/ninja-debug/dist/lib/
+	cp build/ninja-release/liblua.so.* ../../build/ninja-debug/dist/lib/
+
+clean:
+	rm -rf build
+
+
