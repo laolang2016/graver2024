@@ -41,7 +41,8 @@ add_executable(${PROJECT_NAME} ${test_srcs})
 
 target_include_directories(
     ${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/third/test)
+    ${CMAKE_SOURCE_DIR}/third/test
+    ${PROJECT_SOURCE_DIR}/third/lib)
 
 target_link_libraries(${PROJECT_NAME} ${lib_person_name})
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY

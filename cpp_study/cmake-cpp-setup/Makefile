@@ -1,7 +1,13 @@
+export MAKE = make -w
+
 ALL:run
 
+.PHONY: build_lib configure build run rerun test retest clean format tidy doc
 
-.PHONY:configure build run rerun test retest clean format tidy doc
+build_lib:
+	mkdir -p build/ninja-release/dist/lib/
+	mkdir -p build/ninja-debug/dist/lib/
+	@$(MAKE) -C lib/lua
 
 configure:
 ifeq ($(OS), Windows_NT)
@@ -10,7 +16,7 @@ else
 	cmake --preset=linux-release
 endif
 
-build: configure
+build: build_lib configure
 ifeq ($(OS), Windows_NT)
 	cmake --build --preset=windows-release
 else
