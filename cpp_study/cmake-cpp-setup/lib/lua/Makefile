@@ -17,10 +17,16 @@ else
 endif
 
 after_build: build
+
+ifeq ($(OS), Windows_NT)
+	cp build/ninja-release/liblua.dll ../../build/ninja-release/dist/bin/
+	cp build/ninja-release/liblua.dll ../../build/ninja-debug/dist/bin/
+else
 	cp build/ninja-release/liblua.so ../../build/ninja-release/dist/lib/
 	cp build/ninja-release/liblua.so.* ../../build/ninja-release/dist/lib/
 	cp build/ninja-release/liblua.so ../../build/ninja-debug/dist/lib/
 	cp build/ninja-release/liblua.so.* ../../build/ninja-debug/dist/lib/
+endif
 
 clean:
 	rm -rf build

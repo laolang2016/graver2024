@@ -5,9 +5,15 @@ ALL:run
 .PHONY: build_lib configure build run rerun test retest clean format tidy doc
 
 build_lib:
-	mkdir -p build/ninja-release/dist/lib/
-	mkdir -p build/ninja-debug/dist/lib/
+ifeq ($(OS), Windows_NT)
+	mkdir -p build/ninja-release/dist/bin
+	mkdir -p build/ninja-debug/dist/bin
 	@$(MAKE) -C lib/lua
+else
+	mkdir -p build/ninja-release/dist/lib
+	mkdir -p build/ninja-debug/dist/lib
+	@$(MAKE) -C lib/lua
+endif
 
 configure:
 ifeq ($(OS), Windows_NT)
